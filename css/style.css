@@ -410,13 +410,28 @@ a:hover {
 }
 
 .profile-img {
+    width: 295px;              /* You can adjust this */
+    height: 295px;
+    object-fit: cover;         /* Ensures image doesn't stretch */
+    border-radius: 50%;        /* Makes it circular */
+    border: 3px solid #ffffff; /* Optional: white border */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); /* Optional: nice shadow */
+    transition: transform 0.3s ease;
+}
+
+.profile-img:hover {
+    transform: scale(1.05); /* Optional: subtle hover effect */
+}
+
+
+/* .profile-img {
   width: 100%;
   max-width: 400px;
   height: auto;
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-xl);
   animation: float 6s ease-in-out infinite;
-}
+} */
 
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
