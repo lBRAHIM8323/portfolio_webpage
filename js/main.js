@@ -139,20 +139,21 @@ function initializeContactForm() {
     const submitBtn = form.querySelector('button[type="submit"]');
     const btnText = submitBtn.querySelector('.btn-text');
     const btnLoading = submitBtn.querySelector('.btn-loading');
-    
+
+    // ✅ Set Formspree endpoint explicitly
+    form.setAttribute('action', 'https://formspree.io/f/xzzgzeje');
+
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
-        
+
         // Show loading state
         btnText.style.display = 'none';
         btnLoading.style.display = 'inline-flex';
         submitBtn.disabled = true;
-        
-        // Get form data
+
         const formData = new FormData(form);
-        
+
         try {
-            // Replace with your Formspree endpoint or other form service
             const response = await fetch(form.action, {
                 method: 'POST',
                 body: formData,
@@ -160,7 +161,7 @@ function initializeContactForm() {
                     'Accept': 'application/json'
                 }
             });
-            
+
             if (response.ok) {
                 showFormStatus('success', 'Thank you! Your message has been sent successfully.');
                 form.reset();
@@ -169,26 +170,26 @@ function initializeContactForm() {
             }
         } catch (error) {
             console.error('Form submission error:', error);
-            showFormStatus('error', 'Sorry, there was an error sending your message. Please try again or contact me directly.');
+            showFormStatus('error', 'Sorry, there was an error sending your message. Please try again later.');
         } finally {
-            // Reset button state
             btnText.style.display = 'inline';
             btnLoading.style.display = 'none';
             submitBtn.disabled = false;
         }
     });
-    
+
     function showFormStatus(type, message) {
         formStatus.className = `form-status ${type}`;
         formStatus.textContent = message;
         formStatus.style.display = 'block';
-        
-        // Hide status after 5 seconds
+
+        // Hide after 5 seconds
         setTimeout(() => {
             formStatus.style.display = 'none';
         }, 5000);
     }
 }
+
 
 /**
  * Back to top button functionality
@@ -396,10 +397,12 @@ window.addEventListener('resize', debounce(function() {
 // Performance optimization: Preload images
 function preloadImages() {
     const images = [
-        'assets/profile.svg',
-        'assets/project-1.svg',
-        'assets/project-2.svg',
-        'assets/project-3.svg'
+        'assets/AI-powered.png',
+        'assets/braintumor.jpeg',
+        'assets/fire.jpeg',
+        'assets/HR-KPI.png',
+        'assets/profile.png',
+        'assets/stock.jpeg'
     ];
     
     images.forEach(src => {
