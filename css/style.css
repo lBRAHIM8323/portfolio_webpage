@@ -414,7 +414,7 @@ a:hover {
     height: 295px;
     object-fit: cover;         /* Ensures image doesn't stretch */
     border-radius: 50%;        /* Makes it circular */
-    border: 3px solid #ffffff; /* Optional: white border */
+    border: 3px solid #96b9ea; /* Optional: white border */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); /* Optional: nice shadow */
     transition: transform 0.3s ease;
 }
