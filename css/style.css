@@ -1070,10 +1070,10 @@ section {
 
 /* Footer */
 .footer {
-  background-color: hsl(var(--text-primary));
-  color: hsl(var(--background));
-  text-align: center;
-  padding: var(--space-8) 0;
+    background-color: #111; /* Very dark */
+    color: #fff;            /* White text */
+    padding: 1.5rem 0;
+    text-align: center;
 }
 
 .footer-content p {
