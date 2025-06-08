@@ -1153,6 +1153,194 @@ section {
   animation: spin 1s linear infinite;
 }
 
+/* Certifications Section */
+.certifications {
+  padding: var(--space-20) 0;
+  background-color: hsl(var(--surface));
+}
+
+.certifications .section-header {
+  text-align: center;
+  margin-bottom: var(--space-16);
+}
+
+.certifications .section-title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-4);
+  color: hsl(var(--text-primary));
+}
+
+.certifications .section-subtitle {
+  font-size: var(--font-size-lg);
+  color: hsl(var(--text-secondary));
+  max-width: 600px;
+  margin: 0 auto var(--space-12);
+}
+
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Force two cards per row */
+  gap: var(--space-8);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.certification-card {
+  background-color: hsl(var(--background));
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  border: 1px solid hsl(var(--border));
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.certification-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: hsl(var(--primary-color));
+}
+
+.certification-content h3 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: hsl(var(--text-primary));
+  margin-bottom: var(--space-2);
+  line-height: 1.3;
+}
+
+.certification-content h4 {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: hsl(var(--primary-color));
+  margin-bottom: var(--space-3);
+}
+
+.certification-date {
+  display: inline-block;
+  font-size: var(--font-size-sm);
+  color: hsl(var(--text-muted));
+  background-color: hsl(var(--surface));
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-4);
+}
+
+.certification-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.skill-badge {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  padding: var(--space-1) var(--space-3);
+  background-color: hsla(var(--primary-color), 0.1);
+  color: hsl(var(--primary-color));
+  border-radius: var(--radius-full);
+  border: 1px solid hsla(var(--primary-color), 0.3);
+  transition: all var(--transition-fast);
+}
+
+.skill-badge:hover {
+  background-color: hsla(var(--primary-color), 0.2);
+  transform: translateY(-1px);
+}
+
+.certification-credential {
+  display: inline-flex;
+  margin-top: var(--space-4);
+  transition: transform var(--transition-fast);
+}
+
+.certification-credential img {
+  border-radius: var(--radius);
+  border: 1px solid hsl(var(--border));
+  transition: all var(--transition-fast);
+  max-width: 100%;
+  height: auto;
+}
+
+.certification-credential:hover {
+  transform: translateY(-2px);
+}
+
+.certification-credential:hover img {
+  box-shadow: var(--shadow-md);
+  border-color: hsl(var(--primary-color));
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .certifications-grid {
+    grid-template-columns: 1fr; /* Stack cards on smaller screens */
+  }
+
+  .certification-content h3 {
+    font-size: var(--font-size-lg);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .certifications {
+        padding: 80px 0;
+    }
+    
+    .certifications .section-title {
+        font-size: 2rem;
+    }
+    
+    .certifications-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .certification-card {
+        padding: 30px 20px;
+    }
+    
+    .certification-content h3 {
+        font-size: 1.2rem;
+    }
+    
+    .certification-skills {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .certifications-grid {
+        grid-template-columns: 1fr;
+        margin: 0 15px;
+    }
+    
+    .certification-card {
+        padding: 25px 15px;
+    }
+    
+    .certification-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .certification-icon i {
+        font-size: 1.2rem;
+    }
+    
+    .certification-content h3 {
+        font-size: 1.1rem;
+    }
+    
+    .certification-content h4 {
+        font-size: 1rem;
+    }
+}
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
