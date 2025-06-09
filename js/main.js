@@ -4,7 +4,7 @@
  */
 
 // DOM Content Loaded Event
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     initializeApp();
 });
 
@@ -12,29 +12,15 @@ document.addEventListener('DOMContentLoaded', function() {
  * Initialize all app functionality
  */
 function initializeApp() {
-    // Navigation
     initializeNavigation();
-    
-    // Smooth scrolling
     initializeSmoothScrolling();
-    
-    // Scroll animations
     initializeScrollAnimations();
-    
-    // Contact form
     initializeContactForm();
-    
-    // Back to top button
     initializeBackToTop();
-    
-    // Mobile menu
     initializeMobileMenu();
-    
-    // Typing animation
     initializeTypingAnimation();
-    
-    // Intersection Observer for section highlighting
     initializeSectionObserver();
+    initializeExperienceDropdown(); // Added dropdown functionality
 }
 
 /**
@@ -43,25 +29,22 @@ function initializeApp() {
 function initializeNavigation() {
     const navbar = document.getElementById('navbar');
     let lastScrollTop = 0;
-    
-    // Handle navbar scroll effects
-    window.addEventListener('scroll', function() {
+
+    window.addEventListener('scroll', function () {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        // Add scrolled class for styling
+
         if (scrollTop > 50) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
-        
-        // Hide/show navbar on scroll (optional)
+
         if (scrollTop > lastScrollTop && scrollTop > 100) {
             navbar.style.transform = 'translateY(-100%)';
         } else {
             navbar.style.transform = 'translateY(0)';
         }
-        
+
         lastScrollTop = scrollTop;
     });
 }
@@ -71,26 +54,25 @@ function initializeNavigation() {
  */
 function initializeSmoothScrolling() {
     const navLinks = document.querySelectorAll('a[href^="#"]');
-    
+
     navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             e.preventDefault();
-            
+
             const targetId = this.getAttribute('href');
             const targetSection = document.querySelector(targetId);
-            
+
             if (targetSection) {
-                const offsetTop = targetSection.offsetTop - 80; // Account for fixed navbar
-                
+                const offsetTop = targetSection.offsetTop - 80;
+
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'
                 });
-                
-                // Close mobile menu if open
+
                 const navMenu = document.getElementById('nav-menu');
                 const navToggle = document.getElementById('nav-toggle');
-                
+
                 if (navMenu.classList.contains('active')) {
                     navMenu.classList.remove('active');
                     navToggle.classList.remove('active');
@@ -108,13 +90,12 @@ function initializeScrollAnimations() {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
-    
-    const observer = new IntersectionObserver(function(entries) {
+
+    const observer = new IntersectionObserver(function (entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('fade-in-up');
-                
-                // Add stagger effect for children
+
                 const children = entry.target.querySelectorAll('.project-card, .skill-item, .timeline-item');
                 children.forEach((child, index) => {
                     setTimeout(() => {
@@ -124,8 +105,7 @@ function initializeScrollAnimations() {
             }
         });
     }, observerOptions);
-    
-    // Observe sections and cards
+
     const animatedElements = document.querySelectorAll('section, .project-card, .skill-item, .timeline-item');
     animatedElements.forEach(el => observer.observe(el));
 }
@@ -140,13 +120,11 @@ function initializeContactForm() {
     const btnText = submitBtn.querySelector('.btn-text');
     const btnLoading = submitBtn.querySelector('.btn-loading');
 
-    // ✅ Set Formspree endpoint explicitly
     form.setAttribute('action', 'https://formspree.io/f/xzzgzeje');
 
-    form.addEventListener('submit', async function(e) {
+    form.addEventListener('submit', async function (e) {
         e.preventDefault();
 
-        // Show loading state
         btnText.style.display = 'none';
         btnLoading.style.display = 'inline-flex';
         submitBtn.disabled = true;
@@ -183,29 +161,27 @@ function initializeContactForm() {
         formStatus.textContent = message;
         formStatus.style.display = 'block';
 
-        // Hide after 5 seconds
         setTimeout(() => {
             formStatus.style.display = 'none';
         }, 5000);
     }
 }
 
-
 /**
  * Back to top button functionality
  */
 function initializeBackToTop() {
     const backToTopBtn = document.getElementById('backToTop');
-    
-    window.addEventListener('scroll', function() {
+
+    window.addEventListener('scroll', function () {
         if (window.pageYOffset > 300) {
             backToTopBtn.classList.add('visible');
         } else {
             backToTopBtn.classList.remove('visible');
         }
     });
-    
-    backToTopBtn.addEventListener('click', function() {
+
+    backToTopBtn.addEventListener('click', function () {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
@@ -219,14 +195,13 @@ function initializeBackToTop() {
 function initializeMobileMenu() {
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');
-    
-    navToggle.addEventListener('click', function() {
+
+    navToggle.addEventListener('click', function () {
         navMenu.classList.toggle('active');
         navToggle.classList.toggle('active');
     });
-    
-    // Close menu when clicking outside
-    document.addEventListener('click', function(e) {
+
+    document.addEventListener('click', function (e) {
         if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
             navMenu.classList.remove('active');
             navToggle.classList.remove('active');
@@ -240,7 +215,7 @@ function initializeMobileMenu() {
 function initializeTypingAnimation() {
     const subtitle = document.querySelector('.hero-subtitle');
     if (!subtitle) return;
-    
+
     const roles = [
         'AI/ML Engineer.',
         'AI Automation Engineer.',
@@ -248,14 +223,14 @@ function initializeTypingAnimation() {
         'Building Intelligent Systems With Gen AI.',
         'Responsible AI Advocate.'
     ];
-    
+
     let currentRole = 0;
     let currentChar = 0;
     let isDeleting = false;
-    
+
     function typeAnimation() {
         const current = roles[currentRole];
-        
+
         if (isDeleting) {
             subtitle.textContent = current.substring(0, currentChar - 1);
             currentChar--;
@@ -263,22 +238,21 @@ function initializeTypingAnimation() {
             subtitle.textContent = current.substring(0, currentChar + 1);
             currentChar++;
         }
-        
+
         let typeSpeed = isDeleting ? 50 : 100;
-        
+
         if (!isDeleting && currentChar === current.length) {
-            typeSpeed = 2000; // Pause at end
+            typeSpeed = 2000;
             isDeleting = true;
         } else if (isDeleting && currentChar === 0) {
             isDeleting = false;
             currentRole = (currentRole + 1) % roles.length;
-            typeSpeed = 500; // Pause before starting new word
+            typeSpeed = 500;
         }
-        
+
         setTimeout(typeAnimation, typeSpeed);
     }
-    
-    // Start animation after page load
+
     setTimeout(typeAnimation, 1000);
 }
 
@@ -288,21 +262,19 @@ function initializeTypingAnimation() {
 function initializeSectionObserver() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
-    
+
     const observerOptions = {
         threshold: 0.3,
         rootMargin: '-80px 0px -80px 0px'
     };
-    
-    const sectionObserver = new IntersectionObserver(function(entries) {
+
+    const sectionObserver = new IntersectionObserver(function (entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const sectionId = entry.target.getAttribute('id');
-                
-                // Remove active class from all links
+
                 navLinks.forEach(link => link.classList.remove('active'));
-                
-                // Add active class to current section link
+
                 const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
                 if (activeLink) {
                     activeLink.classList.add('active');
@@ -310,15 +282,53 @@ function initializeSectionObserver() {
             }
         });
     }, observerOptions);
-    
+
     sections.forEach(section => sectionObserver.observe(section));
+}
+
+/**
+ * Experience section dropdown functionality
+ */
+function initializeExperienceDropdown() {
+    const positionCards = document.querySelectorAll('.position-card');
+
+    positionCards.forEach(card => {
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-expanded', 'false');
+
+        const toggleCard = () => {
+            const details = card.querySelector('.position-details');
+            const icon = card.querySelector('.expand-icon');
+            const isExpanded = details.classList.contains('expanded');
+
+            if (isExpanded) {
+                details.classList.remove('expanded');
+                icon.classList.remove('expanded');
+                card.classList.remove('expanded');
+            } else {
+                details.classList.add('expanded');
+                icon.classList.add('expanded');
+                card.classList.add('expanded');
+            }
+
+            card.setAttribute('aria-expanded', !isExpanded);
+        };
+
+        card.addEventListener('click', toggleCard);
+        card.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleCard();
+            }
+        });
+    });
 }
 
 /**
  * Utility functions
  */
 
-// Debounce function for performance optimization
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -331,10 +341,9 @@ function debounce(func, wait) {
     };
 }
 
-// Throttle function for scroll events
 function throttle(func, limit) {
     let inThrottle;
-    return function() {
+    return function () {
         const args = arguments;
         const context = this;
         if (!inThrottle) {
@@ -345,7 +354,6 @@ function throttle(func, limit) {
     };
 }
 
-// Check if element is in viewport
 function isInViewport(element) {
     const rect = element.getBoundingClientRect();
     return (
@@ -356,25 +364,23 @@ function isInViewport(element) {
     );
 }
 
-// Smooth reveal animation
 function revealElement(element) {
     element.style.opacity = '0';
     element.style.transform = 'translateY(30px)';
     element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    
+
     setTimeout(() => {
         element.style.opacity = '1';
         element.style.transform = 'translateY(0)';
     }, 100);
 }
 
-// Handle keyboard navigation
-document.addEventListener('keydown', function(e) {
-    // Close mobile menu with Escape key
+// Close mobile menu with Escape key
+document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
         const navMenu = document.getElementById('nav-menu');
         const navToggle = document.getElementById('nav-toggle');
-        
+
         if (navMenu.classList.contains('active')) {
             navMenu.classList.remove('active');
             navToggle.classList.remove('active');
@@ -382,19 +388,18 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-// Handle resize events
-window.addEventListener('resize', debounce(function() {
-    // Close mobile menu on resize to desktop
+// Resize handling
+window.addEventListener('resize', debounce(function () {
     if (window.innerWidth > 768) {
         const navMenu = document.getElementById('nav-menu');
         const navToggle = document.getElementById('nav-toggle');
-        
+
         navMenu.classList.remove('active');
         navToggle.classList.remove('active');
     }
 }, 250));
 
-// Performance optimization: Preload images
+// Image preload
 function preloadImages() {
     const images = [
         'assets/AI-powered.png',
@@ -404,17 +409,15 @@ function preloadImages() {
         'assets/profile.png',
         'assets/stock.jpeg'
     ];
-    
+
     images.forEach(src => {
         const img = new Image();
         img.src = src;
     });
 }
-
-// Initialize image preloading
 setTimeout(preloadImages, 1000);
 
-// Console message for developers
+// Console log for developers
 console.log(`
 🚀 Portfolio Website
 Built with HTML, CSS, and JavaScript
