@@ -787,7 +787,6 @@ section {
 }
 
 /* Experience Section - Concurrent Positions Layout */
-/* Experience Section - Concurrent Positions Layout */
 .experience-container {
   max-width: 1000px;
   margin: 0 auto;
@@ -873,16 +872,19 @@ section {
 
 .position-badge {
   display: inline-block;
-  background: linear-gradient(135deg, hsl(var(--primary-color)), hsl(var(--accent-color)));
-  color: white;
-  padding: var(--space-1) var(--space-3);
+  background: linear-gradient(135deg, hsl(var(--primary-color), 60%, 85%), hsl(var(--accent-color), 60%, 85%));
+  color: hsl(0, 0%, 30%);
+  padding: var(--space-1) var(--space-2);
   border-radius: var(--radius-full);
   font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-medium);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: var(--space-3);
+  font-weight: var(--font-weight-normal);
+  text-transform: none;
+  letter-spacing: normal;
+  opacity: 0.9;
+  margin-bottom: var(--space-2);
 }
+
+
 
 .position-title {
   font-size: var(--font-size-lg);
