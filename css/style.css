@@ -611,32 +611,31 @@ section {
 }
 
 .experience-container {
-  max-width: 1000px;
+  max-width: 100px;
   margin: 0 auto;
-  padding: var(--space-8) 0;
+  padding: var(--space-1) 0;
 }
 
 .current-positions {
-  margin-bottom: var(--space-16);
+  margin-bottom: var(--space-1);
 }
 
 .current-positions h3 {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-2xl);
   color: hsl(var(--text-primary));
   margin-bottom: var(--space-8);
   text-align: center;
-  position: relative;
+  /* position: relative; */
 }
 
 .current-positions h3::after {
   content: '';
   position: absolute;
-  bottom: -var(--space-2);
+  bottom: -var(--space-1);
   left: 50%;
   transform: translateX(-50%);
   width: 60px;
   height: 2px;
-  background: hsl(var(--text-muted));
   border-radius: var(--radius-full);
 }
 
@@ -1013,7 +1012,7 @@ section {
 }
 
 .education h3 {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-2xl);
   color: hsl(var(--text-primary));
   margin-bottom: var(--space-8);
   text-align: center;
@@ -1028,8 +1027,19 @@ section {
   transform: translateX(-50%);
   width: 60px;
   height: 3px;
-  background: linear-gradient(135deg, hsl(var(--text-muted)), hsl(var(--border)));
+  background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--text-muted)), hsl(var(--border)));
   border-radius: var(--radius-full);
+  /* Enhancements */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  opacity: 0.9;
+}
+
+.education h3:hover::after {
+  width: 80px;
+  background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--border)));
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  opacity: 1;
 }
 
 .education-timeline {
